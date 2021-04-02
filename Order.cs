@@ -10,11 +10,15 @@ namespace ACM.BL
     {
         public Order()
         {
-            // Code that generates the order date.
+
+        }
+        public Order(int orderId)
+        {
+            OrderId = orderId;
         }
 
         public int OrderId { get; private set; }
-        public int OrderDate { get; private set; }
+        public DateTimeOffset? OrderDate { get; set; }
 
         /// <summary>
         /// Validates the order data.
@@ -24,7 +28,7 @@ namespace ACM.BL
         {
             var isValid = true;
 
-            // Code that validates the order data.
+            if (OrderDate == null) isValid = false;
 
             return isValid;
         }

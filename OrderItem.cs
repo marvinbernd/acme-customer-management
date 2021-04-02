@@ -8,10 +8,19 @@ namespace ACM.BL
 {
     public class OrderItem
     {
+        public OrderItem()
+        {
+
+        }
+        public OrderItem(int orderItemId)
+        {
+            OrderItemId = orderItemId;
+        }
+
         public int OrderItemId { get; private set; }
-        public Product OrderProduct { get; set; }
+        public int ProductId { get; set; }
         public int Quantity { get; set; }
-        public float PurchasePrice { get; set; }
+        public decimal? PurchasePrice { get; set; }
 
         /// <summary>
         /// Validates the order item data.
@@ -21,7 +30,9 @@ namespace ACM.BL
         {
             var isValid = true;
 
-
+            if (ProductId <= 0) isValid = false;
+            if (Quantity <= 0) isValid = false;
+            if (PurchasePrice == null) isValid = false;
 
             return isValid;
         }
@@ -35,17 +46,6 @@ namespace ACM.BL
             // Code that retrieves the defined order item.
 
             return new OrderItem();
-        }
-
-        /// <summary>
-        /// Retrieves all order items.
-        /// </summary>
-        /// <returns></returns>
-        public List<OrderItem> Retrieve()
-        {
-            // Code that retrieves all order items.
-
-            return new List<OrderItem>();
         }
 
         /// <summary>
